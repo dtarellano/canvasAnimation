@@ -1,12 +1,16 @@
-const canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let c = canvas.getContext("2d");
+var c = canvas.getContext("2d");
 
-var dx = 4;
-var dy = 4;
+c.fillStyle = "rgb(53,53,53)";
+c.fillRect(0, 0, canvas.width, canvas.height);
+console.log("hi");
+
+var dx = 3;
+var dy = 3;
 
 // GLOBAL X PIXELS
 function animeX(dx, y) {
@@ -35,7 +39,7 @@ function animeY(dy, x) {
    var yy = 30;
 
    this.create = function() {
-      c.fillStyle = "rgba(0, 255, 0, 0.5)";
+      c.fillStyle = "rgb(0, 255, 0)";
       c.fillRect(this.x, yy, 30, 30);
    };
 
@@ -62,13 +66,14 @@ function arrayGenerator(array, pixel) {
 arrayGenerator(Xpixels, animeX);
 arrayGenerator(Ypixels, animeY);
 // DISPLAY PIXELS
-function animate() {
-   window.requestAnimationFrame(animate);
-   c.clearRect(0, 0, innerWidth, innerHeight);
+setInterval(function animate() {
+   c.fillStyle = "rgba(53, 53, 53, 0.25)";
+   // window.requestAnimationFrame(animate);
+   c.fillRect(0, 0, innerWidth, innerHeight);
 
    for (var i = 0; i < 4; i++) {
       Xpixels[i].go();
       Ypixels[i].go();
    }
-}
+}, 20);
 animate();
